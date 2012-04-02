@@ -98,6 +98,16 @@ describe "CascadingProperties" do
         end
         it_should_behave_like "loadin valid_source1"
       end
+
+      context "invalid environment variable" do
+        it do
+          ENV['MAX_REPORT'] = ', syntax error '
+          path = File.expand_path('../examples/with_erb.rb', File.dirname(__FILE__))
+          expect{
+            CascadingProperties.load_file(path)
+          }.to raise_error(SyntaxError, %r<#{path}:8: syntax error, unexpected tIDENTIFIER>)
+        end
+      end
     end
 
   end
