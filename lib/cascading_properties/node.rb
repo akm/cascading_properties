@@ -2,22 +2,16 @@ require 'cascading_properties'
 
 class CascadingProperties::Node < CascadingProperties::BlankSlate
 
-  def initialize
+  def initialize(&block)
     @_hash = {}
+    instance_eval(&block) if block
   end
 
   def method_missing(name, *args, &block)
     name = name.to_s
     case args.length
     when 0 then
-      if block
-        node = CascadingProperties::Node.new
-        node.instance_eval(&block)
-        @_hash[name] = node
-        node
-      else
-        @_hash[name] ||= CascadingProperties::Node.new
-      end
+      @_hash[name] ||= CascadingProperties::Node.new(&block)
     when 1 then
       @_hash[name] = args.first
     else
