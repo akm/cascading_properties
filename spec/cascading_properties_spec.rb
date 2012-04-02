@@ -88,5 +88,15 @@ describe "CascadingProperties" do
       end
       it_should_behave_like "loadin valid_source1"
     end
+
+    context 'with_erb.rb' do
+      before do
+        ENV['MAX_REPORT'] = '10'
+        path = File.expand_path('../examples/with_erb.rb', File.dirname(__FILE__))
+        @root = CascadingProperties.load_file(path)
+      end
+      it_should_behave_like "loadin valid_source1"
+    end
+
   end
 end
