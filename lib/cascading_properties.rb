@@ -8,5 +8,9 @@ module CascadingProperties
       node.instance_eval(dsl_text)
       node
     end
+
+    def load_file(filepath)
+      load(File.read(filepath))
+    end
   end
 end
