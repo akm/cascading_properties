@@ -79,4 +79,12 @@ describe "CascadingProperties" do
     end
     it_should_behave_like "loadin valid_source1"
   end
+
+  describe :load_file do
+    before do
+      path = File.expand_path('../examples/basic1.rb', File.dirname(__FILE__))
+      @root = CascadingProperties.load_file(path)
+    end
+    it_should_behave_like "loadin valid_source1"
+  end
 end
