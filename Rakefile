@@ -17,9 +17,9 @@ Jeweler::Tasks.new do |gem|
   gem.name = "cascading_properties"
   gem.homepage = "http://github.com/akm/cascading_properties"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "akima@nautilus-technologies.com"
+  gem.summary = %Q{cascading_properties provides a DSL to define complicated properties}
+  gem.description = %Q{cascading_properties provides a DSL to define complicated properties}
+  gem.email = "akima@groovenauts.jp"
   gem.authors = ["akm"]
   # dependencies defined in Gemfile
 end
