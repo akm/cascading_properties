@@ -3,9 +3,9 @@ module CascadingProperties
   autoload :Node, 'cascading_properties/node'
 
   class << self
-    def load(dsl_text)
+    def load(dsl_text, *args)
       node = Node.new
-      node.instance_eval(dsl_text)
+      node.instance_eval(dsl_text, *args)
       node
     end
 
@@ -13,7 +13,7 @@ module CascadingProperties
       erb = ERB.new(IO.read(filepath))
       erb.filename = filepath
       text = erb.result
-      load(text)
+      load(text, filepath)
     end
   end
 end
