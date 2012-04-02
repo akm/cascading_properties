@@ -10,7 +10,10 @@ module CascadingProperties
     end
 
     def load_file(filepath)
-      load(File.read(filepath))
+      erb = ERB.new(IO.read(filepath))
+      erb.filename = filepath
+      text = erb.result
+      load(text)
     end
   end
 end
