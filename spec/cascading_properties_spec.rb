@@ -1,5 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
+require 'java' if RUBY_PLATFORM == 'java'
+
 describe "CascadingProperties" do
   valid_source1 = <<-EOS
     compiler {
@@ -21,7 +23,25 @@ describe "CascadingProperties" do
     describe "root" do
       subject{ @root }
       its(:compiler){ should be_a(CascadingProperties::Node)}
+
+      if RUBY_PLATFORM == 'java'
+        it "should export to java.util.Properties" do
+          props = subject.to_properties
+          props.should be_a(java.util.Properties)
+          props.size().should == 5
+          props.getProperty("compiler.error.message.varNotFound"     ).should == "variable not found"
+          props.getProperty("compiler.error.message.incompatibleType").should == "incompatible type"
+          props.getProperty("compiler.maxReport").should == '10'
+          props.getProperty("compiler.files.input.encoding").should == 'SJIS'
+          props.getProperty("compiler.files.output.encoding").should == 'UTF-8'
+        end
+      else
+        it "should raise NotImplementedError" do
+          expect{ subject.to_properties }.to raise_error(NotImplementedError)
+        end
+      end
     end
+
     describe "compiler" do
       subject{ @root.compiler }
       its(:error){ should be_a(CascadingProperties::Node)}
