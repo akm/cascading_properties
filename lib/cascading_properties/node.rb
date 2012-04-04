@@ -19,12 +19,10 @@ class CascadingProperties::Node < CascadingProperties::BlankSlate
     end
   end
 
+  if RUBY_PLATFORM == 'java'
+
   def to_properties(dest = nil, parent = nil)
-    if RUBY_PLATFORM == 'java'
       dest ||= java.util.Properties.new
-    else
-      raise NotImplementedError
-    end
     @_hash.each do |k, v|
       key = parent ? "#{parent}.#{k}" : k
       if v.respond_to?(:to_properties)
@@ -34,6 +32,14 @@ class CascadingProperties::Node < CascadingProperties::BlankSlate
       end
     end
     dest
+  end
+
+  else
+
+    def to_properties(dest = nil, parent = nil)
+      raise NotImplementedError
+    end
+
   end
 
 end
