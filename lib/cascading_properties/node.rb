@@ -21,18 +21,18 @@ class CascadingProperties::Node < CascadingProperties::BlankSlate
 
   if RUBY_PLATFORM == 'java'
 
-  def to_properties(dest = nil, parent = nil)
+    def to_properties(dest = nil, parent = nil)
       dest ||= java.util.Properties.new
-    @_hash.each do |k, v|
-      key = parent ? "#{parent}.#{k}" : k
-      if v.respond_to?(:to_properties)
-        v.to_properties(dest, key)
-      else
-        dest.setProperty(key, v.to_s)
+      @_hash.each do |k, v|
+        key = parent ? "#{parent}.#{k}" : k
+        if v.respond_to?(:to_properties)
+          v.to_properties(dest, key)
+        else
+          dest.setProperty(key, v.to_s)
+        end
       end
+      dest
     end
-    dest
-  end
 
   else
 
