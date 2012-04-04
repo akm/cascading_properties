@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{akm}]
-  s.date = %q{2012-04-02}
+  s.date = %q{2012-04-04}
   s.description = %q{cascading_properties provides a DSL to define complicated properties}
   s.email = %q{akima@groovenauts.jp}
   s.extra_rdoc_files = [
@@ -26,7 +26,9 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "cascading_properties.gemspec",
     "examples/basic1.rb",
+    "examples/end_with_equal.rb",
     "examples/with_erb.rb",
     "lib/cascading_properties.rb",
     "lib/cascading_properties/blank_slate.rb",
