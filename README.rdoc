@@ -8,6 +8,7 @@ rake install
 
 == how to use
 
+=== example 1
 require 'rubygems'
 require 'cascading_properties'
 
@@ -20,10 +21,33 @@ compiler {
   }
 }
 EOS
-
-root = CascadingProperties.load_file("path/to/dsl_file")
-
 root.compiler.maxReport
+
+=== example 2
+
+require 'rubygems'
+require 'cascading_properties'
+root = CascadingProperties.load_file("path/to/dsl_file")
+root.compiler.maxReport
+
+=== example 3
+
+
+require 'rubygems'
+require 'cascading_properties'
+require 'cascading_properties/java'
+
+properties = java.util.Properties.load_dsl(<<EOS)
+compiler {
+  maxReport 10
+  files {
+    input.encoding "SJIS"
+    output.encoding  "UTF-8"
+  }
+}
+EOS
+properties.inspect
+
 
 == Contributing to cascading_properties
  
