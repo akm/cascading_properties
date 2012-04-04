@@ -1,6 +1,29 @@
 = cascading_properties
 
-Description goes here.
+== install
+
+git clone git@github.com:akm/cascading_properties.git
+cd cascading_properties
+rake install
+
+== how to use
+
+require 'rubygems'
+require 'cascading_properties'
+
+root = CascadingProperties.load(<<EOS)
+compiler {
+  maxReport 10
+  files {
+    input.encoding "SJIS"
+    output.encoding  "UTF-8"
+  }
+}
+EOS
+
+root = CascadingProperties.load_file("path/to/dsl_file")
+
+root.compiler.maxReport
 
 == Contributing to cascading_properties
  
