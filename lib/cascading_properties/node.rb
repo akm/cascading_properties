@@ -8,7 +8,7 @@ class CascadingProperties::Node < CascadingProperties::BlankSlate
   end
 
   def method_missing(name, *args, &block)
-    name = name.to_s
+    name = name.to_s.sub(/\=$/, '')
     case args.length
     when 0 then
       @_hash[name] ||= CascadingProperties::Node.new(&block)
