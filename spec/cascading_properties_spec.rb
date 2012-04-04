@@ -89,6 +89,14 @@ describe "CascadingProperties" do
       it_should_behave_like "loadin valid_source1"
     end
 
+    context 'end_with_equal.rb' do
+      before do
+        path = File.expand_path('../examples/end_with_equal.rb', File.dirname(__FILE__))
+        @root = CascadingProperties.load_file(path)
+      end
+      it_should_behave_like "loadin valid_source1"
+    end
+
     context 'with_erb.rb' do
       context "valid environment variable" do
         before do
